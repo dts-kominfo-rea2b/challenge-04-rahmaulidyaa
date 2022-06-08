@@ -6,21 +6,34 @@ const dates = [
   "2021-04-05 00:00:00 UTC+2", // 1617573600 (epoch time, dalam detik)
   "2020-02-03 UTC+7", // 1580662800 (epoch time, dalam detik)
 ];
-
 // TODO: Buatlah fungsi createDate
-const createDate = null;
+const createDate = (dates, num) => {
+  const array = [];
+  for (let i = 0; i < dates.length; i++) {
+    const date = new Date(dates[i]).getTime() / 1000;
+    const dateString = date.toString();
+    array.push(dateString);
+  }
+  const sortDate = array.sort((a, b) => a - b);
+
+  if (num === undefined) {
+    const sortDate = array.sort((a, b) => a - b);
+    return sortDate.join("-");
+  } else {
+    return sortDate[num];
+    const sortDate = array.sort((a, b) => a + b);
+    return array[num];
+  }
+};
 
 // ! JANGAN DIMODIFIKASI
 (() => {
   // IIFE
-
   // '1546387200-1580662800-1614841200-1617573600-1651802400' (dalam string)
   console.log(createDate?.(dates));
-
   // '1614841200' (dalam string)
   console.log(createDate?.(dates, 2));
 })();
-
 module.exports = {
   dates,
   createDate,
